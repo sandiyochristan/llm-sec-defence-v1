@@ -1,0 +1,11 @@
+flask==2.3.3
+transformers==4.35.0
+torch==2.1.0
+accelerate==0.24.1
+sentencepiece==0.1.99
+protobuf==4.24.4
+tokenizers>=0.13.0
+llama-cpp-python>=0.2.0
+huggingface_hub>=0.17.0
+psutil>=5.9.0
+llm-guard>=0.3.0
