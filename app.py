@@ -49,9 +49,9 @@ def initialize_llm_guard():
             Anonymize(vault),  # Anonymize sensitive data
             PromptInjection(),  # Detect prompt injection attacks
             TokenLimit(limit=2048),  # Limit input length
-            Toxicity(),  # Detect toxic content
+            Toxicity(threshold=0.95),  # Detect toxic content, less aggressive
             BanSubstrings(substrings=["password", "admin", "root", "sudo"], case_sensitive=False),  # Monitor sensitive terms
-            BanTopics(topics=["violence", "illegal_activities"], threshold=0.8)  # Monitor dangerous topics
+            BanTopics(topics=["violence", "illegal_activities"], threshold=0.95)  # Monitor dangerous topics, less aggressive
         ]
         print("  ✅ Input scanners configured")
         
@@ -60,8 +60,8 @@ def initialize_llm_guard():
         output_scanners = [
             Deanonymize(vault),  # Deanonymize data in responses
             NoRefusal(),  # Detect refusal patterns
-            Relevance(threshold=0.5),  # Ensure response relevance
-            Sensitive(),  # Detect sensitive information leakage
+            Relevance(threshold=0.95),  # Ensure response relevance, less aggressive
+            Sensitive(threshold=0.95),  # Detect sensitive information leakage, less aggressive
             OutputCode(languages=["Python", "JavaScript", "PHP"], is_blocked=False),  # Monitor code output
             OutputBanSubstrings(substrings=["password", "admin", "root", "sudo"], case_sensitive=False)  # Monitor sensitive terms
         ]
