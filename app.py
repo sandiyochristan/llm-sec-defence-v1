@@ -50,6 +50,7 @@ def initialize_llm_guard():
             PromptInjection(),  # Detect prompt injection attacks
             TokenLimit(limit=2048),  # Limit input length
             Toxicity(threshold=0.95),  # Detect toxic content, less aggressive
+            Code(is_blocked=False),  # Do not block code in input
             BanSubstrings(substrings=["password", "admin", "root", "sudo"], case_sensitive=False),  # Monitor sensitive terms
             BanTopics(topics=["violence", "illegal_activities"], threshold=0.95)  # Monitor dangerous topics, less aggressive
         ]
